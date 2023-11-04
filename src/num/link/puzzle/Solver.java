@@ -60,10 +60,10 @@ public class Solver {
     }
 
     private Puzzle checkAllCellPossibilities(Puzzle puzzle, boolean[][] passedCells, int curPosX, int curPosY, CellNumberDetails targetNumberDetails, Cell[] possibilities, Direction direction) {
-        Puzzle puzzleClone = puzzle.clone();
         if (passedCells[curPosX][curPosY]) {
             return null;
         }
+        Puzzle puzzleClone = puzzle.clone();
         boolean[][] passedCellsClone = cloneBooleanArray(passedCells);
         passedCellsClone[curPosX][curPosY] = true;
         if (puzzleClone.get(curPosX, curPosY) != Cell.EMPTY) {

@@ -10,6 +10,7 @@ public class Puzzle {
     public Puzzle(int sizeX, int sizeY, int numberOfNumbers) {
         this(new Cell[sizeX][sizeY], new int[sizeX][sizeY], sizeX, sizeY, numberOfNumbers);
     }
+
     private Puzzle(Cell[][] puzzle, int[][] numbers, int sizeX, int sizeY, int numberOfNumbers) {
         this.puzzle = puzzle;
         this.numbers = numbers;
@@ -22,7 +23,7 @@ public class Puzzle {
         for (int y = 0; y < sizeY; y++) {
             for (int x = 0; x < sizeX; x++) {
                 if (puzzle[x][y] == Cell.NUMBER) {
-                    System.out.print((char)('a' + numbers[x][y]));
+                    System.out.print((char) ('a' + numbers[x][y]));
                 } else {
                     System.out.print(puzzle[x][y].getSymbol());
                 }
@@ -39,10 +40,12 @@ public class Puzzle {
             }
         }
     }
+
     public void set(int x, int y, Cell value, int number) {
         puzzle[x][y] = value;
         numbers[x][y] = number;
     }
+
     public void set(int x, int y, Cell value) {
         puzzle[x][y] = value;
     }
@@ -64,13 +67,12 @@ public class Puzzle {
         Cell[][] puzzleClone = new Cell[sizeX][sizeY];
         int[][] numbersClone = new int[sizeX][sizeY];
         for (int x = 0; x < sizeX; x++) {
-            for (int y = 0; y < sizeY; y++) {
-                puzzleClone[x][y] = puzzle[x][y];
-                numbersClone[x][y] = numbers[x][y];
-            }
+            System.arraycopy(puzzle[x], 0, puzzleClone[x], 0, sizeY);
+            System.arraycopy(numbers[x], 0, numbersClone[x], 0, sizeY);
         }
         return new Puzzle(puzzleClone, numbersClone, sizeX, sizeY, numberOfNumbers);
     }
+
 
     public CellNumberDetails getTargetNumberDetails(int targetNumber) {
         // TODO performance could be improved by initializing the number's positions in a hash map
